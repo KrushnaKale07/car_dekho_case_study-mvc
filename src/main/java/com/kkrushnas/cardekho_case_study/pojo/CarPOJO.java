@@ -15,8 +15,8 @@ public class CarPOJO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String email;
-	private Long contact;
-	private String address;
+	private String brand;
+	private String fuel_type;
+	private double price;
 
 }

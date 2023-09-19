@@ -13,18 +13,28 @@ public class CarService {
 	@Autowired
 	private CarRepository repository;
 
-	public List<CarPOJO> findALLCars() {
+	public List<CarPOJO> findAllCars() {
 		List<CarPOJO> cars = repository.findAllCars();
 		return cars;
 	}
 
-	public CarPOJO addCar(String name, String email, long contact, String address) {
-		CarPOJO pojo = repository.addCar(name, email, contact, address);
+	public CarPOJO addCar(String name, String brand, String fuel_type, double price) {
+		CarPOJO pojo = repository.addCar(name, brand, fuel_type, price);
 		return pojo;
 	}
 
 	public CarPOJO searchCar(int id) {
 		CarPOJO pojo = repository.searchCar(id);
+		return pojo;
+	}
+
+	public CarPOJO removeCar(int id) {
+		CarPOJO pojo = repository.removeCar(id);
+		return pojo;
+	}
+
+	public CarPOJO updateCar(int id, String name, String brand, String fuel_type, double price) {
+		CarPOJO pojo = repository.updateCar(id, name, brand, fuel_type, price);
 		return pojo;
 	}
 

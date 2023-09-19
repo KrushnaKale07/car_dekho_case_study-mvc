@@ -55,15 +55,15 @@ public class CarRepository {
 		return cars;
 	}
 
-	public CarPOJO addCar(String name, String email, long contact, String address) {
+	public CarPOJO addCar(String name, String brand, String fuel_type, double price) {
 		openConnection();
 		transaction.begin();
 
 		CarPOJO pojo = new CarPOJO();
 		pojo.setName(name);
-		pojo.setEmail(email);
-		pojo.setContact(contact);
-		pojo.setAddress(address);
+		pojo.setBrand(brand);
+		pojo.setFuel_type(fuel_type);
+		pojo.setPrice(price);
 
 		manager.persist(pojo);
 
@@ -75,12 +75,41 @@ public class CarRepository {
 	public CarPOJO searchCar(int id) {
 		openConnection();
 		transaction.begin();
-		
+
 		CarPOJO pojo = manager.find(CarPOJO.class, id);
 
 		transaction.commit();
 		closeConnection();
 		return pojo;
+	}
+
+	public CarPOJO removeCar(int id) {
+		openConnection();
+		transaction.begin();
+
+		CarPOJO pojo = manager.find(CarPOJO.class, id);
+		if (pojo != null) {
+			manager.remove(pojo);
+		}
+
+		transaction.commit();
+		closeConnection();
+		return pojo;
+	}
+
+	public CarPOJO updateCar(int id, String name, String brand, String fuel_type, double price) {
+		openConnection();
+		transaction.begin();
+
+		CarPOJO pojo = manager.find(CarPOJO.class, id);
+		pojo.setName(name);
+		pojo.setBrand(brand);
+		pojo.setFuel_type(fuel_type);
+		pojo.setPrice(price);
+
+		transaction.commit();
+		closeConnection();
+		return null;
 	}
 
 }
